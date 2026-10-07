@@ -1,0 +1,46 @@
+{
+  "$version": "2.0",
+  "definitions": {
+    "PRODUCTS": {
+      "kind": "entity",
+      "@EndUserText.label": "Product Catalog",
+      "@DataWarehouse.connectionName": "SAP_ECC_01",
+      "@DataWarehouse.remoteTable": "MARA",
+      "elements": {
+        "PRODUCT_ID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 18,
+          "notNull": true
+        },
+        "CATEGORY": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "BASE_PRICE": {
+          "type": "cds.Decimal",
+          "precision": 10,
+          "scale": 2
+        }
+      }
+    },
+    "PLANTS": {
+      "kind": "entity",
+      "@EndUserText.label": "Manufacturing Plants",
+      "@DataWarehouse.connectionName": "SAP_ECC_01",
+      "@DataWarehouse.remoteTable": "T001W",
+      "elements": {
+        "PLANT_ID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "notNull": true
+        },
+        "PLANT_NAME": {
+          "type": "cds.String",
+          "length": 40
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "CUSTOMER_MASTER",
+  "label": "Customer Master Dimension",
+  "sourceConnection": "S4HANA_PRD",
+  "remoteSource": "S4HANA_REMOTE_SRC",
+  "remoteTable": "KNA1",
+  "capabilities": ["fullLoad", "filterable"],
+  "modeling": {
+    "semanticUsage": "DIMENSION",
+    "type": "remoteTable"
+  },
+  "columns": [
+    {
+      "name": "CUSTOMER_ID",
+      "label": "Customer Number",
+      "dataType": "NVARCHAR",
+      "length": 10,
+      "isKey": true,
+      "nullable": false
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "label": "Company Name",
+      "dataType": "NVARCHAR",
+      "length": 50,
+      "isKey": false,
+      "nullable": true
+    },
+    {
+      "name": "COUNTRY",
+      "label": "Country Key",
+      "dataType": "NVARCHAR",
+      "length": 2,
+      "isKey": false,
+      "nullable": true
+    },
+    {
+      "name": "CITY",
+      "label": "City",
+      "dataType": "NVARCHAR",
+      "length": 35,
+      "isKey": false,
+      "nullable": true
+    },
+    {
+      "name": "CREDIT_LIMIT",
+      "label": "Credit Limit",
+      "dataType": "DECIMAL",
+      "precision": 12,
+      "scale": 2,
+      "isKey": false,
+      "nullable": true
+    }
+  ]
+}

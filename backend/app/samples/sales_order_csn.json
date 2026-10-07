@@ -1,0 +1,72 @@
+{
+  "$version": "2.0",
+  "meta": {
+    "creator": "SAP Datasphere CSN Exporter",
+    "version": "1.0.0"
+  },
+  "definitions": {
+    "SALES_ORDERS": {
+      "kind": "entity",
+      "@EndUserText.label": "Sales Orders Header & Item",
+      "@Analytics.dataCategory": "FACT",
+      "@DataWarehouse.connectionName": "S4HANA_PRD",
+      "@DataWarehouse.remoteSource": "S4HANA_REMOTE_SRC",
+      "@DataWarehouse.remoteTable": "VBAK_VBAP",
+      "@DataWarehouse.capabilities": ["deltaLoad", "fullLoad", "filterable"],
+      "@DataWarehouse.filter": "STATUS <> 'DELETED'",
+      "elements": {
+        "SALES_ORDER_ID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10,
+          "notNull": true,
+          "@EndUserText.label": "Sales Order Number"
+        },
+        "ITEM_NO": {
+          "key": true,
+          "type": "cds.Integer",
+          "notNull": true,
+          "@EndUserText.label": "Sales Item Number"
+        },
+        "CUSTOMER_ID": {
+          "type": "cds.String",
+          "length": 10,
+          "@EndUserText.label": "Sold-To Party",
+          "@ObjectModel.foreignKey.association": "CUSTOMER_MASTER"
+        },
+        "ORDER_DATE": {
+          "type": "cds.Date",
+          "@EndUserText.label": "Document Date"
+        },
+        "NET_AMOUNT": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 2,
+          "@EndUserText.label": "Net Amount",
+          "@Aggregation.default": "#SUM",
+          "@Semantics.amount.currencyCode": "CURRENCY_CODE"
+        },
+        "TAX_AMOUNT": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 2,
+          "@EndUserText.label": "Tax Amount"
+        },
+        "CURRENCY_CODE": {
+          "type": "cds.String",
+          "length": 3,
+          "@EndUserText.label": "Currency"
+        },
+        "ORDER_STATUS": {
+          "type": "cds.String",
+          "length": 20,
+          "@EndUserText.label": "Order Status"
+        },
+        "IS_ACTIVE": {
+          "type": "cds.Boolean",
+          "@EndUserText.label": "Active Flag"
+        }
+      }
+    }
+  }
+}
